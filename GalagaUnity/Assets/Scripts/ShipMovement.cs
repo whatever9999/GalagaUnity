@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
 {
-    public float Speed = 1;
-    public float RotateSpeed = 5;
-    
+    public float Speed = 5;
+    public float RotateSpeed = 0.5f;
+
     void Update()
     {
         //Movement      
         if (Input.GetKey("a"))
         {
-            transform.Translate(-(Speed * Time.deltaTime), 0, 0);
+            transform.Rotate(0, 0, RotateSpeed);
         }
         if (Input.GetKey("d"))
         {
-            transform.Translate((Speed * Time.deltaTime), 0, 0);
+            transform.Rotate(0, 0, -RotateSpeed);
         }
-        if(Input.GetKey("w"))
+        if (Input.GetKey("w"))
         {
             transform.Translate(0, (Speed * Time.deltaTime), 0);
         }
@@ -26,8 +26,5 @@ public class ShipMovement : MonoBehaviour
         {
             transform.Translate(0, -(Speed * Time.deltaTime), 0);
         }
-
-        //Rotation
-        transform.Rotate(0, 0, Input.GetAxis("Horizontal") * RotateSpeed * Time.deltaTime);
     }
 }
