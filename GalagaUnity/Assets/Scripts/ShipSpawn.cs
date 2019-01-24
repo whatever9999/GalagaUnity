@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class ShipSpawn : MonoBehaviour
 {
-    public GameObject Ship;
-    public int chance;
-    public int numShips;
+    public GameObject PurpleShip;
+    public int purpleChance;
+    public int numPurpleShips;
+
+    public GameObject GreenShip;
+    public int greenChance;
+    public int numGreenShips;
 
     void Update()
     {
-        int num = (int)Random.Range(0, 1000);
-
-        if(num <= chance)
+        int num = (int)Random.Range(0, 10000);
+        if(num <= purpleChance)
         {
-            SpawnShips();
+            SpawnShips(PurpleShip, numPurpleShips);
+        }
+
+        num = (int)Random.Range(0, 10000);
+        if (num <= greenChance)
+        {
+            SpawnShips(GreenShip, numGreenShips);
         }
     }
 
-    void SpawnShips()
+    void SpawnShips(GameObject Ship, int numShips)
     {
         for (float i = 0; i < numShips; i++)
         {

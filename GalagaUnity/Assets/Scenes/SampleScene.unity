@@ -277,9 +277,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6636019662c824d8202ed88e72df50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ship: {fileID: 1372054163762098, guid: 3252a904a380d6145a449232a9073de5, type: 2}
-  chance: 1
-  numShips: 3
+  PurpleShip: {fileID: 1372054163762098, guid: 3252a904a380d6145a449232a9073de5, type: 2}
+  purpleChance: 5
+  numPurpleShips: 2
+  GreenShip: {fileID: 1835599833261114, guid: 5e39e14a66cc1e44e9c743e008769acc, type: 2}
+  greenChance: 10
+  numGreenShips: 4
 --- !u!1 &681420394
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,8 +294,8 @@ GameObject:
   - component: {fileID: 681420396}
   - component: {fileID: 681420395}
   m_Layer: 0
-  m_Name: heroship
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
