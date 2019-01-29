@@ -7,6 +7,14 @@ public class Fall : MonoBehaviour
 {
     public float FallSpeed;
     public GameObject Rock;
+    private Startup gameManager;
+
+    public EGamestates State;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<Startup>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -16,6 +24,7 @@ public class Fall : MonoBehaviour
         {
             //Place the rock back at random point at the top of the screen (out of view)
             transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 7.5f, 0);
+
         }
     }
 
@@ -23,9 +32,16 @@ public class Fall : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            Destroy(collision.gameObject);
             transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 7.5f, 0);
-            Application.Quit();
+            GameManager.GetComponent<Startup>().loseLife();
+            GameManager.GetComponent<Startup>().loseLife();
+            if (GameManager.GetComponent<Startup>().getLives() >= 0)
+            {
+                GameObject.Find("Player").transform.SetPositionAndRotation(new Vector2(Screen.width / 2, - Screen.height), Quaternion.Euler(0, 0, 0));
+            } else if (GameManager.GetComponent<Startup>().getLives() == 0)
+            {
+                GameManager.GetComponent<Startup>().LoadCurrentScene(State);
+            }
         }
     }
 }

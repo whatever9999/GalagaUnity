@@ -35,4 +35,14 @@ public class GreenMovement : MonoBehaviour {
 
         if (transform.position.y < -5) Destroy(gameObject);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            Application.Quit();
+        }
+    }
 }
