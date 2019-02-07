@@ -15,11 +15,22 @@ public class ShipWeapons : MonoBehaviour
     public GameObject laser;
 
     enum Weapon { oneBullet, threeBullet, laser };
+    public enum Points { ASTEROID = 10, ENEMY = 20 };
     private static int currentWeapon;
+
+
+    private void Start()
+    {
+        timerOn = false;
+    }
 
     private void Update()
     {
-        powerUpTimer += Time.deltaTime;
+        if (timerOn)
+        {
+            powerUpTimer += Time.deltaTime;
+        }
+
         shootTimer += Time.deltaTime;
 
         if(powerUpTimer > powerUpTimeLimit)

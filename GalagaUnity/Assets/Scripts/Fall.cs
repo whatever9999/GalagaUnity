@@ -7,13 +7,12 @@ public class Fall : MonoBehaviour
 {
     public float FallSpeed;
     public GameObject Rock;
-    private Startup gameManager;
 
-    public EGamestates State;
+    private GameManager gm;
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<Startup>();
+        gm = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -33,15 +32,7 @@ public class Fall : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 7.5f, 0);
-            GameManager.GetComponent<Startup>().loseLife();
-            GameManager.GetComponent<Startup>().loseLife();
-            if (GameManager.GetComponent<Startup>().getLives() >= 0)
-            {
-                GameObject.Find("Player").transform.SetPositionAndRotation(new Vector2(Screen.width / 2, - Screen.height), Quaternion.Euler(0, 0, 0));
-            } else if (GameManager.GetComponent<Startup>().getLives() == 0)
-            {
-                GameManager.GetComponent<Startup>().LoadCurrentScene(State);
-            }
+            gm.LoseLife();
         }
     }
 }

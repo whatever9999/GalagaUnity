@@ -9,6 +9,13 @@ public class GreenMovement : MonoBehaviour {
     private bool add = false;
     private Vector2 targetPos;
 
+    private GameManager gm;
+
+    private void Awake()
+    {
+        gm = GameManager.instance;
+    }
+
     void Start()
     {
         targetPos = new Vector2(transform.position.x, transform.position.y);
@@ -40,9 +47,8 @@ public class GreenMovement : MonoBehaviour {
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            Destroy(collision.gameObject);
             Destroy(gameObject);
-            Application.Quit();
+            gm.LoseLife();
         }
     }
 }
