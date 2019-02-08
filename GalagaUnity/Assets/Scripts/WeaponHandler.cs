@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletHandler : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
     public float speed;
 
@@ -25,16 +25,15 @@ public class BulletHandler : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Asteroid")) {
+        if (collision.gameObject.tag.Equals("Asteroid"))
+        {
             collision.gameObject.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 7.5f, 0);
-            Destroy(gameObject);
             gm.addPoints((int)ShipWeapons.Points.ASTEROID);
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
             ShipWeapons.GetRandomWeapon();
             Destroy(collision.gameObject);
-            Destroy(gameObject);
             gm.addPoints((int)ShipWeapons.Points.ENEMY);
         }
     }

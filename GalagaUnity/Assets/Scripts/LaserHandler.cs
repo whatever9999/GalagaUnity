@@ -5,7 +5,6 @@ using UnityEngine;
 public class LaserHandler : MonoBehaviour
 {
     public float speed;
-    public GameObject laser;
 
     private GameManager gm;
 
