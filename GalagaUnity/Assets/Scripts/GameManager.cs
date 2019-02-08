@@ -16,15 +16,20 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         instance = this;
         numLives = startLives;
-        StartGame();
     }
 
-    private void StartGame()
+    public void StartGame()
     {
-        startPos.z = 0;
-        Instantiate(player, startPos, Quaternion.identity);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //Player is instantiated when scene is loaded fully (GameLoading class)
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public void LoseLife()
@@ -34,6 +39,7 @@ public class GameManager : MonoBehaviour
 
         if (numLives < 0)
         {
+            numLives = startLives;
             EndGame();
         }
         else
@@ -49,8 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void NextLife()
     {
-        //JUST CHANGED DOESN'T WORK
-        GetComponent<PlayerState>().transform.position = GameManager.instance.startPos;
+        player.transform.position = startPos;
         PlayerState.isImmune = true;
     }
 
