@@ -6,7 +6,7 @@ public class WeaponHandler : MonoBehaviour
 {
     public float speed;
 
-    private GameManager gm;
+    protected GameManager gm;
 
     private void Awake()
     {
@@ -28,13 +28,15 @@ public class WeaponHandler : MonoBehaviour
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
             collision.gameObject.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 7.5f, 0);
-            gm.addPoints((int)ShipWeapons.Points.ASTEROID);
+            Destroy(gameObject);
+            gm.addPoints((int)PlayerWeapons.Points.ASTEROID);
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            ShipWeapons.GetRandomWeapon();
+            PlayerWeapons.GetRandomWeapon();
             Destroy(collision.gameObject);
-            gm.addPoints((int)ShipWeapons.Points.ENEMY);
+            Destroy(gameObject);
+            gm.addPoints((int)PlayerWeapons.Points.ENEMY);
         }
     }
 }

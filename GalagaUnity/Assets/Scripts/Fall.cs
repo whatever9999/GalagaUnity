@@ -15,7 +15,6 @@ public class Fall : MonoBehaviour
         gm = GameManager.instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(0, -FallSpeed * Time.deltaTime, 0);//make the rock fall 

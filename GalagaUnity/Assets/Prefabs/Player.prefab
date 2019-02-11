@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6839662448230620851}
   - component: {fileID: 5572450165285452917}
   - component: {fileID: 9218843464912689741}
-  - component: {fileID: 6839662448230620852}
-  - component: {fileID: 1133716858904286581}
   - component: {fileID: 2002585525256878602}
+  - component: {fileID: 3174105283621115801}
+  - component: {fileID: 2881659001092877656}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -131,35 +131,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6839662448230620852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6839662448230620853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31fb96b7b9b543e43af682879d09f7fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 2
---- !u!114 &1133716858904286581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6839662448230620853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e2dd8514256a548ba514f592e3213a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUpTimeLimit: 5
-  shootTimeLimit: 0.5
-  bullet: {fileID: 1727147230906390, guid: be4d278a468e0c648b2ae95fbd532142, type: 3}
-  laser: {fileID: 5983532051314918875, guid: 9ea2a12da6307a548b4700309252b31a, type: 3}
 --- !u!114 &2002585525256878602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +145,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immunityLength: 3
   timeBetweenFlash: 0.5
+--- !u!114 &3174105283621115801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839662448230620853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1318884eda0c7974f90e199294efc2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+--- !u!114 &2881659001092877656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839662448230620853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e2dd8514256a548ba514f592e3213a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpTimeLimit: 10
+  shootTimeLimit: 0.5
+  bullet: {fileID: 0}
+  laser: {fileID: 0}

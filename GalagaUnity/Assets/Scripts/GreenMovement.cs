@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenMovement : MonoBehaviour {
-    public float speed = 1.5f;
+public class GreenMovement : ItemMovement {
     public float xDisplacement = 1.5f;
     public float yDisplacement = 1.5f;
+
     private bool add = false;
     private Vector2 targetPos;
-
-    private GameManager gm;
-
-    private void Awake()
-    {
-        gm = GameManager.instance;
-    }
 
     void Start()
     {
@@ -41,14 +34,5 @@ public class GreenMovement : MonoBehaviour {
         }
 
         if (transform.position.y < -5) Destroy(gameObject);
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            Destroy(gameObject);
-            gm.LoseLife();
-        }
     }
 }

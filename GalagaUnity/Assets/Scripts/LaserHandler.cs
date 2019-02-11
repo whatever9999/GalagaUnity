@@ -2,39 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserHandler : MonoBehaviour
+public class LaserHandler : WeaponHandler
 {
-    public float speed;
-
-    private GameManager gm;
-
-    private void Awake()
-    {
-        gm = GameManager.instance;
-    }
-
-    void Update()
-    {
-        transform.Translate(0, speed * Time.deltaTime, 0);
-
-        if (transform.position.y >= 10)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
             collision.gameObject.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 7.5f, 0);
-            gm.addPoints((int)ShipWeapons.Points.ASTEROID);
+            gm.addPoints((int)PlayerWeapons.Points.ASTEROID);
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            ShipWeapons.GetRandomWeapon();
+            PlayerWeapons.GetRandomWeapon();
             Destroy(collision.gameObject);
-            gm.addPoints((int)ShipWeapons.Points.ENEMY);
+            gm.addPoints((int)PlayerWeapons.Points.ENEMY);
         }
     }
 }

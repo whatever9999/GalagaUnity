@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipWeapons : MonoBehaviour
+public class PlayerWeapons : MonoBehaviour
 {
     private static bool timerOn;
     private static float powerUpTimer;
