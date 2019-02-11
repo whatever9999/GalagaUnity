@@ -132,4 +132,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  expiresOnCollision: 1
+  pointsForHitting: 5
+  pointsTakenForMissing: 1

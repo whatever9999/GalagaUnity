@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     public Transform player;
     public Vector3 startPos;
 
-    private int numLives;
-    private int totalPoints;
+    int numLives;
+    int totalPoints;
+
+    public static UIManager uim;
 
     public static GameManager instance;
 
@@ -25,6 +27,16 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //Player is instantiated when scene is loaded fully (GameLoading class)
+
+        GameManager.uim = UIManager.instance;
+        while (uim = null)
+        {
+            if(uim != null)
+            {
+                GameManager.uim.showPoints(totalPoints);
+                GameManager.uim.showLives(numLives);
+            }
+        }
     }
 
     public void QuitGame()
@@ -44,6 +56,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            uim.showLives(numLives);
             NextLife();
         }
     }
@@ -59,9 +72,9 @@ public class GameManager : MonoBehaviour
         PlayerState.isImmune = true;
     }
 
-    public void addPoints(int points)
+    public void changePoints(int points)
     {
         totalPoints += points;
-        Debug.Log(totalPoints);
+        uim.showPoints(totalPoints);
     }
 }

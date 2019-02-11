@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5651650818513617650}
   - component: {fileID: 4726442255660354952}
   - component: {fileID: 7207523606377189732}
-  - component: {fileID: 2224611031966260529}
+  - component: {fileID: 7952203595004078143}
   m_Layer: 0
   m_Name: laser
   m_TagString: Untagged
@@ -129,7 +129,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.03, y: 2}
   m_EdgeRadius: 0
---- !u!114 &2224611031966260529
+--- !u!114 &7952203595004078143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,3 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
+  pointsForHitting: 3
+  pointsTakenForMissing: 0

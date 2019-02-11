@@ -172,5 +172,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpTimeLimit: 10
   shootTimeLimit: 0.5
-  bullet: {fileID: 0}
-  laser: {fileID: 0}
+  baseWeapon:
+    weapon: {fileID: 1727147230906390, guid: be4d278a468e0c648b2ae95fbd532142, type: 3}
+    numberShots: 1
+  powerUpWeapons:
+  - weapon: {fileID: 1727147230906390, guid: be4d278a468e0c648b2ae95fbd532142, type: 3}
+    numberShots: 3
+  - weapon: {fileID: 5983532051314918875, guid: 9ea2a12da6307a548b4700309252b31a,
+      type: 3}
+    numberShots: 1

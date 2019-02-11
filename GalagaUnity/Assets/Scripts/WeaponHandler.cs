@@ -5,6 +5,8 @@ using UnityEngine;
 public class WeaponHandler : MonoBehaviour
 {
     public float speed;
+    public int pointsForHitting;
+    public int pointsTakenForMissing;
 
     protected GameManager gm;
 
@@ -20,6 +22,7 @@ public class WeaponHandler : MonoBehaviour
         if (transform.position.y >= 10)
         {
             Destroy(gameObject);
+            gm.changePoints(-pointsTakenForMissing);
         }
     }
 
@@ -27,16 +30,16 @@ public class WeaponHandler : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
-            collision.gameObject.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), 7.5f, 0);
             Destroy(gameObject);
-            gm.addPoints((int)PlayerWeapons.Points.ASTEROID);
+            Destroy(collision.gameObject);
+            gm.changePoints(pointsForHitting);
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            PlayerWeapons.GetRandomWeapon();
+            PlayerWeapons.instance.GetRandomWeapon();
             Destroy(collision.gameObject);
             Destroy(gameObject);
-            gm.addPoints((int)PlayerWeapons.Points.ENEMY);
+            gm.changePoints(pointsForHitting);
         }
     }
 }

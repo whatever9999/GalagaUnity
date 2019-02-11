@@ -11,16 +11,25 @@ public class PlayerWeapons : MonoBehaviour
     private static float shootTimer;
     public float shootTimeLimit;
 
-    public GameObject bullet;
-    public GameObject laser;
+    public Weapon baseWeapon;
+    public Weapon[] powerUpWeapons;
+    private Weapon currentWeapon;
 
-    enum Weapon { oneBullet, threeBullet, laser };
-    public enum Points { ASTEROID = 10, ENEMY = 20 };
-    private static int currentWeapon;
+    //Space between player and bullets/lasers
+    private const float shotPlayerDistance = 1;
+    //Space between bullets/lasers if there's more than one
+    private const float shotDistance = 0.5f;
 
+    public static PlayerWeapons instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
+        currentWeapon = baseWeapon;
         timerOn = false;
     }
 
@@ -35,7 +44,7 @@ public class PlayerWeapons : MonoBehaviour
 
         if(powerUpTimer > powerUpTimeLimit)
         {
-            currentWeapon = (int)Weapon.oneBullet;
+            currentWeapon = baseWeapon;
         }
 
         if (Input.GetKey("s") && shootTimer >= shootTimeLimit)
@@ -47,48 +56,31 @@ public class PlayerWeapons : MonoBehaviour
 
     public void Shoot()
     {
-        switch (currentWeapon)
+        Vector3 shotPosition = transform.position;
+        shotPosition.y += shotPlayerDistance;
+        float shotDistanceRange = shotDistance * currentWeapon.numberShots - shotDistance;
+        shotPosition.x -= shotDistanceRange / 2f;
+        for (int i = 0; i < currentWeapon.numberShots; i++)
         {
-            case (int)Weapon.oneBullet:
-                Vector3 bulletPos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-                GameObject.Instantiate(bullet).transform.SetPositionAndRotation(bulletPos, Quaternion.Euler(0, 0, 0));
-                break;
-            case (int)Weapon.threeBullet:
-                bulletPos = new Vector3(transform.position.x - 0.5f, transform.position.y + 0.5f, transform.position.z);
-                GameObject.Instantiate(bullet).transform.SetPositionAndRotation(bulletPos, Quaternion.Euler(0, 0, 0));
-
-                Vector3 bulletTwoPos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-                GameObject.Instantiate(bullet).transform.SetPositionAndRotation(bulletTwoPos, Quaternion.Euler(0, 0, 0));
-
-                Vector3 bulletThreePos = new Vector3(transform.position.x + 0.5f, transform.position.y + 0.5f, transform.position.z);
-                GameObject.Instantiate(bullet).transform.SetPositionAndRotation(bulletThreePos, Quaternion.Euler(0, 0, 0));
-                break;
-            case (int)Weapon.laser:
-                Vector3 laserPos = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
-                GameObject.Instantiate(laser).transform.SetPositionAndRotation(laserPos, Quaternion.Euler(0, 0, 0));
-                break;
+            Instantiate(currentWeapon.weapon).transform.SetPositionAndRotation(shotPosition, Quaternion.identity);
+            shotPosition.x += shotDistance;
         }
-
     }
 
-    public static void GetRandomWeapon()
+    public void GetRandomWeapon()
     {
-        int rand = (int)Random.Range(1, 3);
+        int rand = (int)Random.Range(0, powerUpWeapons.Length);
 
-        switch (rand)
-        {
-            case (int)Weapon.threeBullet:
-                currentWeapon = (int)Weapon.threeBullet;
-                break;
-            case (int)Weapon.laser:
-                currentWeapon = (int)Weapon.laser;
-                break;
-            default:
-                currentWeapon = (int)Weapon.oneBullet;
-                break;
-        }
+        currentWeapon = powerUpWeapons[rand];
 
         powerUpTimer = 0;
         timerOn = true;
+    }
+
+    [System.Serializable]
+    public class Weapon
+    {
+        public GameObject weapon;
+        public int numberShots;
     }
 }
