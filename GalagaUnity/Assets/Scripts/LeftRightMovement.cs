@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenMovement : ItemMovement {
+public class LeftRightMovement : ItemMovement {
     public float xDisplacement = 1.5f;
     public float yDisplacement = 1.5f;
 

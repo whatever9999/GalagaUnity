@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PurpleMovement: ItemMovement {
+public class TowardPlayerMovement: ItemMovement {
     private void Update() {
         try
         {

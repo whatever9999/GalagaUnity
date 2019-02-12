@@ -5,12 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    enum Scenes {GameManager, StartMenu, Game, EndMenu};
+
     public int startLives;
     public Transform player;
     public Vector3 startPos;
 
     int numLives;
     int totalPoints;
+
+    public int GetNumLives()
+    {
+        return numLives;
+    }
+    public int GetTotalPoints()
+    {
+        return totalPoints;
+    }
 
     public static UIManager uim;
 
@@ -21,22 +32,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         instance = this;
         numLives = startLives;
+        StartMenu();
     }
 
-    public void StartGame()
+    public void StartMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //Player is instantiated when scene is loaded fully (GameLoading class)
+        SceneManager.LoadScene((int)Scenes.StartMenu);
+    }
 
-        GameManager.uim = UIManager.instance;
-        while (uim = null)
-        {
-            if(uim != null)
-            {
-                GameManager.uim.showPoints(totalPoints);
-                GameManager.uim.showLives(numLives);
-            }
-        }
+    public void Game()
+    {
+        SceneManager.LoadScene((int)Scenes.Game);
+        //Player is instantiated when scene is loaded fully (GameLoading class)
+        //Score and lives text is also set
+    }
+
+    public void EndMenu()
+    {
+        SceneManager.LoadScene((int)Scenes.EndMenu);
     }
 
     public void QuitGame()
@@ -47,23 +60,23 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         numLives--;
-        Debug.Log(numLives);
 
         if (numLives < 0)
         {
-            numLives = startLives;
             EndGame();
         }
         else
         {
-            uim.showLives(numLives);
+            uim.ShowLives(numLives);
             NextLife();
         }
     }
 
     private void EndGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        numLives = startLives;
+        totalPoints = 0;
+        EndMenu();
     }
 
     private void NextLife()
@@ -72,9 +85,9 @@ public class GameManager : MonoBehaviour
         PlayerState.isImmune = true;
     }
 
-    public void changePoints(int points)
+    public void ChangePoints(int points)
     {
         totalPoints += points;
-        uim.showPoints(totalPoints);
+        uim.ShowPoints(totalPoints);
     }
 }

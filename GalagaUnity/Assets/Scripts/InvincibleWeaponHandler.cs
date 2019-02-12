@@ -9,13 +9,13 @@ public class InvincibleWeaponHandler : WeaponHandler
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
             Destroy(collision.gameObject);
-            gm.changePoints(pointsForHitting);
+            gm.ChangePoints(pointsForHitting);
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
             PlayerWeapons.instance.GetRandomWeapon();
             Destroy(collision.gameObject);
-            gm.changePoints(pointsForHitting);
+            gm.ChangePoints(pointsForHitting);
         }
     }
 }

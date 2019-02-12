@@ -22,7 +22,7 @@ public class WeaponHandler : MonoBehaviour
         if (transform.position.y >= 10)
         {
             Destroy(gameObject);
-            gm.changePoints(-pointsTakenForMissing);
+            gm.ChangePoints(-pointsTakenForMissing);
         }
     }
 
@@ -32,14 +32,14 @@ public class WeaponHandler : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);
-            gm.changePoints(pointsForHitting);
+            gm.ChangePoints(pointsForHitting);
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
             PlayerWeapons.instance.GetRandomWeapon();
             Destroy(collision.gameObject);
             Destroy(gameObject);
-            gm.changePoints(pointsForHitting);
+            gm.ChangePoints(pointsForHitting);
         }
     }
 }

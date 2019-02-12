@@ -10,17 +10,24 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance;
 
+    private void OnEnable()
+    {
+        GameManager.uim = instance;
+        ShowLives(GameManager.instance.GetNumLives());
+        ShowPoints(GameManager.instance.GetTotalPoints());
+    }
+
     private void Awake()
     {
         instance = this;
     }
 
-    public void showLives(int lives)
+    public void ShowLives(int lives)
     {
         livesText.SetText("Lives: " + lives);
     }
 
-    public void showPoints(int points)
+    public void ShowPoints(int points)
     {
         pointsText.SetText("Score: " + points);
     }
