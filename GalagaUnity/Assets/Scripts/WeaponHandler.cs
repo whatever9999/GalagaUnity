@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WeaponHandler : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class WeaponHandler : MonoBehaviour
     {
         transform.Translate(0, speed * Time.deltaTime, 0);
 
-        if (transform.position.y >= 10)
+        if (transform.position.y >= 5)
         {
             Destroy(gameObject);
             gm.ChangePoints(-pointsTakenForMissing);
@@ -30,6 +31,13 @@ public class WeaponHandler : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
+            //missiles from asteroids are tagged as asteroids - since they cannot drop a NullReferenceException will occur if they are shot
+            //They don't need to do anything in place of the drop
+            try
+            {
+                collision.gameObject.GetComponent<Drops>().Drop();
+            }
+            catch (NullReferenceException) { };
             Destroy(gameObject);
             Destroy(collision.gameObject);
             gm.ChangePoints(pointsForHitting);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemMovement : ShipMovement
 {
-    private GameManager gm;
+    protected GameManager gm;
 
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class ItemMovement : ShipMovement
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
+            gameObject.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
             gm.LoseLife();
         }

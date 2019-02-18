@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class InvincibleWeaponHandler : WeaponHandler
 {
@@ -8,6 +9,13 @@ public class InvincibleWeaponHandler : WeaponHandler
     {
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
+            //missiles from asteroids are tagged as asteroids - since they cannot drop a NullReferenceException will occur if they are shot
+            //They don't need to do anything in place of the drop
+            try
+            {
+                collision.gameObject.GetComponent<Drops>().Drop();
+            }
+            catch (NullReferenceException) { };
             Destroy(collision.gameObject);
             gm.ChangePoints(pointsForHitting);
         }

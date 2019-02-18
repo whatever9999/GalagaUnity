@@ -42,14 +42,17 @@ public class GameManager : MonoBehaviour
 
     public void Game()
     {
+        numLives = startLives;
+        totalPoints = 0;
         SceneManager.LoadScene((int)Scenes.Game);
-        //Player is instantiated when scene is loaded fully (GameLoading class)
+        //Player is instantiated when scene is loaded fully (GameLoading script)
         //Score and lives text is also set
     }
 
     public void EndMenu()
     {
         SceneManager.LoadScene((int)Scenes.EndMenu);
+        //Score is set when scene is loaded fully (EndMenu script)
     }
 
     public void QuitGame()
@@ -72,10 +75,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GainLife()
+    {
+        numLives++;
+        uim.ShowLives(numLives);
+    }
+
     private void EndGame()
     {
-        numLives = startLives;
-        totalPoints = 0;
         EndMenu();
     }
 

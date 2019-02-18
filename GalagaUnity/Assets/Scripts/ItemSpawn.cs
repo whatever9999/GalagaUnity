@@ -6,17 +6,24 @@ using UnityEditor;
 public class ItemSpawn : MonoBehaviour
 {
     public Item[] items;
+    public int secondsBetweenSpawns;
 
     void Update()
     {
-        for(int i = 0; i < items.Length; i++)
+        StartCoroutine(CheckChance());
+    }
+
+    IEnumerator CheckChance()
+    {
+        for (int i = 0; i < items.Length; i++)
         {
-            int num = (int)Random.Range(0, 10000);
+            float num = Random.Range(0, 100);
             if (num <= items[i].chance)
             {
                 SpawnItems(items[i].item, items[i].number);
             }
         }
+        yield return new WaitForSeconds(secondsBetweenSpawns);
     }
 
     void SpawnItems(GameObject item, int number)
@@ -27,12 +34,12 @@ public class ItemSpawn : MonoBehaviour
             GameObject.Instantiate(item).transform.SetPositionAndRotation(pos, Quaternion.Euler(0, 0, 0));
         }
     }
+}
 
-    [System.Serializable]
-    public class Item
-    {
-        public GameObject item;
-        public int chance;
-        public int number;
-    }
+[System.Serializable]
+public class Item
+{
+    public GameObject item;
+    public float chance;
+    public int number;
 }
