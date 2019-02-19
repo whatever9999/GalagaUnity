@@ -24,7 +24,7 @@ public class ItemMovement : ShipMovement
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            gameObject.GetComponent<AudioSource>().Play();
+            AudioManager.instance.Explosion();
             Destroy(gameObject);
             gm.LoseLife();
         }

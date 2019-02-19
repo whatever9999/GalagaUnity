@@ -31,6 +31,7 @@ public class WeaponHandler : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
+            AudioManager.instance.Explosion();
             //missiles from asteroids are tagged as asteroids - since they cannot drop a NullReferenceException will occur if they are shot
             //They don't need to do anything in place of the drop
             try
@@ -44,6 +45,7 @@ public class WeaponHandler : MonoBehaviour
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
+            AudioManager.instance.Explosion();
             PlayerWeapons.instance.GetRandomWeapon();
             Destroy(collision.gameObject);
             Destroy(gameObject);

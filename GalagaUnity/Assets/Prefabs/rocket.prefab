@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8663063047871112164}
   - component: {fileID: 6570746186392246809}
   - component: {fileID: 5720787853734777602}
-  - component: {fileID: 7194445259002205051}
+  - component: {fileID: 6894347620853544069}
   m_Layer: 0
   m_Name: rocket
   m_TagString: Rocket
@@ -135,7 +135,7 @@ MonoBehaviour:
   speed: 3
   pointsForHitting: 5
   pointsTakenForMissing: 3
---- !u!82 &7194445259002205051
+--- !u!82 &6894347620853544069
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 65e9027de60922b47a1cb078b479b3eb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
