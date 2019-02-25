@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = s.audioMixerGroup;
         }
 
         backgroundMusic.source = gameObject.AddComponent<AudioSource>();
@@ -28,6 +29,7 @@ public class AudioManager : MonoBehaviour
         backgroundMusic.source.volume = backgroundMusic.volume;
         backgroundMusic.source.pitch = backgroundMusic.pitch;
         backgroundMusic.source.loop = backgroundMusic.loop;
+        backgroundMusic.source.outputAudioMixerGroup = backgroundMusic.audioMixerGroup;
     }
 
     private void Start()
@@ -48,6 +50,9 @@ public class AudioManager : MonoBehaviour
 public class Sound
 {
     public bool loop;
+
+    public AudioMixerGroup audioMixerGroup;
+
     public AudioClip clip;
 
     [Range(0f, 1f)]

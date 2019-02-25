@@ -142,15 +142,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic:
-    loop: 0
+    loop: 1
+    audioMixerGroup: {fileID: 24300002, guid: ce03ef95b706eb24f805033eacfb2ba5, type: 2}
     clip: {fileID: 8300000, guid: ffa13b61090cc2a44b0049b9461e13bf, type: 3}
     volume: 0.5
     pitch: 1
     source: {fileID: 0}
   explosions:
   - loop: 0
+    audioMixerGroup: {fileID: 24300002, guid: ce03ef95b706eb24f805033eacfb2ba5, type: 2}
     clip: {fileID: 8300000, guid: 1f605eeb6c7335d42b451c9ac3988856, type: 3}
-    volume: 0.6
+    volume: 0.9
     pitch: 1
     source: {fileID: 0}
 --- !u!4 &1049098884
@@ -198,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLives: 3
   player: {fileID: 6839662448230620850, guid: 765df8e6ad3994e41a48cbd1e36e0953, type: 3}
-  startPos: {x: 0, y: -2, z: 0}
+  startPos: {x: 0, y: -3, z: 0}
 --- !u!4 &1389242906
 Transform:
   m_ObjectHideFlags: 0

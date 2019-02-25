@@ -6,9 +6,11 @@ using UnityEditor;
 public class ItemSpawn : MonoBehaviour
 {
     public Item[] items;
-    public int secondsBetweenSpawns;
+    public float secondsBetweenSpawns;
 
-    void Update()
+    private int spawnNum;
+
+    private void Start()
     {
         StartCoroutine(CheckChance());
     }
@@ -21,9 +23,21 @@ public class ItemSpawn : MonoBehaviour
             if (num <= items[i].chance)
             {
                 SpawnItems(items[i].item, items[i].number);
+                items[i].chance += items[i].changeChanceEverySpawn;
+
+                //Divide by zero will occur if the feature is not used
+                try
+                {
+                    if (spawnNum % items[i].spawnsToChangeNumber == 0)
+                    {
+                        items[i].number += items[i].changeNumber;
+                    }
+                } catch (System.DivideByZeroException) { };
             }
         }
+        spawnNum++;
         yield return new WaitForSeconds(secondsBetweenSpawns);
+        StartCoroutine(CheckChance());
     }
 
     void SpawnItems(GameObject item, int number)
@@ -42,4 +56,11 @@ public class Item
     public GameObject item;
     public float chance;
     public int number;
+
+    //The amount added onto the chance every time there is a spawn
+    public float changeChanceEverySpawn;
+    //The amount added onto number when a certain amount of spawns occur
+    public int changeNumber;
+    //The number of spawns to occur before number changes
+    public int spawnsToChangeNumber;
 }

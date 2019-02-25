@@ -12,15 +12,10 @@ public class InvincibleWeaponHandler : WeaponHandler
             //missiles from asteroids are tagged as asteroids - since they cannot drop a NullReferenceException will occur if they are shot
             //They don't need to do anything in place of the drop
             AudioManager.instance.Explosion();
-            try
-            {
-                collision.gameObject.GetComponent<Drops>().Drop();
-            }
-            catch (NullReferenceException) { };
-            Destroy(collision.gameObject);
             gm.ChangePoints(pointsForHitting);
+            AnimationManager.instance.ExplodeMeteorite(collision.gameObject);
         }
-        if (collision.gameObject.tag.Equals("Enemy"))
+        else if (collision.gameObject.tag.Equals("Enemy"))
         {
             AudioManager.instance.Explosion();
             PlayerWeapons.instance.GetRandomWeapon();

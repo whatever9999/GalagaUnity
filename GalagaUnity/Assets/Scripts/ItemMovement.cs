@@ -29,4 +29,9 @@ public class ItemMovement : ShipMovement
             gm.LoseLife();
         }
     }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }
