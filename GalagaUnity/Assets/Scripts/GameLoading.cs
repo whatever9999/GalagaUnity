@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
+/*
+ * Instantiates the backgrounds when the game scene is loaded
+ * */
 public class GameLoading : MonoBehaviour
 {
     public GameObject background;
@@ -9,9 +11,10 @@ public class GameLoading : MonoBehaviour
     {
         Instantiate(GameManager.instance.player, GameManager.instance.startPos, Quaternion.identity);
 
+        //Put the backgrounds accross three rows according to their height
         for(int i = 0; i < 3; i++)
         {
-            Instantiate(background).transform.SetPositionAndRotation(new Vector3(0, BackgroundHandler.instance.backgroundHeight * i, 5), Quaternion.identity);
+            Instantiate(background).transform.SetPositionAndRotation(new Vector3(0, BackgroundHandler.staticBackgroundHeight * i, 5), Quaternion.identity);
         }
     }
 }

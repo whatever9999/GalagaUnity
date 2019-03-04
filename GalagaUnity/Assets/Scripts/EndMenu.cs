@@ -1,16 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using TMPro;
 
+/*
+ * Adds data relating to the previous scene into the UI e.g. score
+ * End menu button controller
+ * */
 public class EndMenu : MonoBehaviour
 {
-    GameManager gm = GameManager.instance;
+    GameManager gm;
     public TextMeshProUGUI scoreText;
 
+    //When the script is enabled (The end screen scene is loaded) the score will be allocated according to that found in the game manager
     private void OnEnable()
     {
+        gm = GameManager.instance;
         scoreText.SetText("Final Score: " + gm.GetTotalPoints());
     }
 

@@ -1,12 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Item moves left and right as it goes down the screen
+ * */
 public class LeftRightMovement : ItemMovement {
-    public float xDisplacement = 1.5f;
-    public float yDisplacement = 1.5f;
+    public float xDisplacement;
+    public float yDisplacement;
 
+    //We add if we are going to the right, subtract if going left
     private bool add = false;
+
     private Vector2 targetPos;
 
     void Start()
@@ -16,6 +19,7 @@ public class LeftRightMovement : ItemMovement {
 
     private void Update()
     {
+        //Check if the item has reached the target position
         if (new Vector2(transform.position.x, transform.position.y) != targetPos)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);

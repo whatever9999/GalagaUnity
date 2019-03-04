@@ -1,7 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Gives the player a random weapon of those added in the inspector temporarily (when an enemy ship is hit)
+ * Shoots the weapon when the player presses the S key
+ * Handles the timers for the random weapon power ups and between shots (don't want player to shoot a constant stream of bullets)
+ * */
 public class PlayerWeapons : MonoBehaviour
 {
     private static bool timerOn;
@@ -24,7 +27,14 @@ public class PlayerWeapons : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(instance);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     private void Start()
@@ -40,14 +50,14 @@ public class PlayerWeapons : MonoBehaviour
             powerUpTimer += Time.deltaTime;
         }
 
-        shootTimer += Time.deltaTime;
-
         if(powerUpTimer > powerUpTimeLimit)
         {
             currentWeapon = baseWeapon;
         }
 
-        if (Input.GetKey("s") && shootTimer >= shootTimeLimit)
+        shootTimer += Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.S) && shootTimer >= shootTimeLimit)
         {
             Shoot();
             shootTimer = 0;
@@ -58,11 +68,17 @@ public class PlayerWeapons : MonoBehaviour
     {
         Vector3 shotPosition = transform.position;
         shotPosition.y += shotPlayerDistance;
+
+        //Weapons may have multiple "shots" when fired
+        //Each shot has a distance between it determined in the inspector
         float shotDistanceRange = shotDistance * currentWeapon.numberShots - shotDistance;
+        //Move the shot position all the way to the left
         shotPosition.x -= shotDistanceRange / 2f;
+
         for (int i = 0; i < currentWeapon.numberShots; i++)
         {
             Instantiate(currentWeapon.weapon).transform.SetPositionAndRotation(shotPosition, Quaternion.identity);
+            //Move the shot position to the right by the distance between one shot
             shotPosition.x += shotDistance;
         }
     }

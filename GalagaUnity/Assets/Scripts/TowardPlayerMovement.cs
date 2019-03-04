@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
+/*
+ * Ship finds the player object and moves towards it
+ * */
 public class TowardPlayerMovement: ItemMovement {
     private void Update() {
         try

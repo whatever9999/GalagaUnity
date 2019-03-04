@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * When the player loses a life (but does not die) they are given temporary immunity, which is shown with a flashing effect
+ * */
 public class PlayerState : MonoBehaviour
 {
     public static bool isImmune;
@@ -12,21 +15,25 @@ public class PlayerState : MonoBehaviour
 
     private bool toggleVisible;
     private float immunityTimer;
-    private Collider2D c2D;
+
+    private Collider2D c2d;
     private SpriteRenderer sr;
 
     private void Start()
     {
-        c2D = this.GetComponent<Collider2D>();
+        c2d = this.GetComponent<Collider2D>();
         sr = this.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
+        //If the player is not immune we do not need to make them flash or make the timer go down to check when immunity ends
         if(isImmune)
         {
-            c2D.enabled = false;
+            //Stop the ship from colliding
+            c2d.enabled = false;
 
+            //Flash
             flashTimer += Time.deltaTime;
             if (flashTimer > timeBetweenFlash)
             {
@@ -35,6 +42,8 @@ public class PlayerState : MonoBehaviour
                 flashTimer = 0;
             }
 
+            //Check if still immune
+            //Makes sure that the player will be visible when they are not immune
             immunityTimer += Time.deltaTime;
             if (immunityTimer > immunityLength)
             {
@@ -42,7 +51,7 @@ public class PlayerState : MonoBehaviour
                 toggleVisible = false;
                 immunityTimer = 0;
                 isImmune = false;
-                c2D.enabled = true;
+                c2d.enabled = true;
             }
         }
     }

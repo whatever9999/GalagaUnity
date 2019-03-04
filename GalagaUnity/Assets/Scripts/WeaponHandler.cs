@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 
+/*
+ * Each weapon (bullet/laser/etc.) has a speed, an amount of points for hitting something and an amount for missing determined in the inspector
+ * By default a weapon will move in a straight line and be destroyed when it hits a meteorite/enemy (destroying that object as well)
+ * */
 public class WeaponHandler : MonoBehaviour
 {
     public float speed;
@@ -23,6 +24,7 @@ public class WeaponHandler : MonoBehaviour
         if (transform.position.y >= 5)
         {
             Destroy(gameObject);
+            //If the weapon is destroyed because it goes out of bounds then points are deducted from the player's score
             gm.ChangePoints(-pointsTakenForMissing);
         }
     }
@@ -31,20 +33,29 @@ public class WeaponHandler : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
-            //missiles from asteroids are tagged as asteroids - since they cannot drop a NullReferenceException will occur if they are shot
-            //They don't need to do anything in place of the drop
-            AudioManager.instance.Explosion();
+            //Add points
             gm.ChangePoints(pointsForHitting);
+
+            //Sfx
+            AudioManager.instance.Explosion();
+
+            //Animation and destruction of collision object (meteorite)
             AnimationManager.instance.ExplodeMeteorite(collision.gameObject);
+
+            //Destroy this object
             Destroy(gameObject);
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
+            gm.ChangePoints(pointsForHitting);
+
             AudioManager.instance.Explosion();
+
+            //Give the player a power up weapon for hitting an enemy ship
             PlayerWeapons.instance.GetRandomWeapon();
+
             Destroy(collision.gameObject);
             Destroy(gameObject);
-            gm.ChangePoints(pointsForHitting);
         }
     }
 }

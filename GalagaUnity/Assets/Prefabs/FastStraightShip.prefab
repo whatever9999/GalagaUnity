@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9178719151319639191}
   - component: {fileID: 3941470999795288449}
   - component: {fileID: 4204233623545657402}
-  - component: {fileID: 3291152854980163820}
+  - component: {fileID: 3558279285688868949}
   m_Layer: 0
   m_Name: FastStraightShip
   m_TagString: Enemy
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3291152854980163820
+--- !u!114 &3558279285688868949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,8 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3732797219150479677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a946ebd94591f434abdf879c14543cfa, type: 3}
+  m_Script: {fileID: 11500000, guid: d015d0bee7cd2f743b8f9a4625e0297f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  distanceEveryFrame: 1

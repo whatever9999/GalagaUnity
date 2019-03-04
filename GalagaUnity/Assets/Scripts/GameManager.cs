@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Handles scene transitions, points and lives
+ * */
 public class GameManager : MonoBehaviour
 {
     enum Scenes {GameManager, StartMenu, Game, EndMenu};
@@ -11,8 +12,8 @@ public class GameManager : MonoBehaviour
     public Transform player;
     public Vector3 startPos;
 
-    int numLives;
-    int totalPoints;
+    private int numLives;
+    private int totalPoints;
 
     public int GetNumLives()
     {
@@ -30,8 +31,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        instance = this;
-        numLives = startLives;
+
+        if (instance != null && instance != this)
+        {
+            Destroy(instance);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
+    private void Start()
+    {
         StartMenu();
     }
 
@@ -64,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         numLives--;
 
+        //Check if has run out of lives
         if (numLives < 0)
         {
             EndGame();
@@ -88,7 +101,6 @@ public class GameManager : MonoBehaviour
 
     private void NextLife()
     {
-        player.transform.position = startPos;
         PlayerState.isImmune = true;
     }
 

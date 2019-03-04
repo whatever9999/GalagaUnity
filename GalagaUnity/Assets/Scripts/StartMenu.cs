@@ -1,12 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 
+/*
+ * Volume changes from the settings menu
+ * Start and quit button handling
+ * */
 public class StartMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    GameManager gm = GameManager.instance;
+    GameManager gm;
+
+    private void Start()
+    {
+        gm = GameManager.instance;
+    }
 
     public void StartButton()
     {

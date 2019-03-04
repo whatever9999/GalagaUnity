@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Life object gives the player an extra life and is destroyed when touched
+ * */
 public class Life : ItemMovement
 {
     void OnCollisionEnter2D(Collision2D collision)

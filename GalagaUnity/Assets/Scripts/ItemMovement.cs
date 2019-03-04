@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Moves the item down the screen
+ * Destroys the object if it leaves the screen or hits the player (also making them lose a life)
+ * */
 public class ItemMovement : ShipMovement
 {
     protected GameManager gm;
