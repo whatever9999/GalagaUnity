@@ -288,7 +288,7 @@ MonoBehaviour:
     number: 2
     changeChanceEverySpawn: 0.5
     changeNumber: 1
-    spawnsToChangeNumber: 5
+    spawnsToChangeNumber: 10
   - item: {fileID: 1000452182330638, guid: 114f15c231bb20a418b9427963623da2, type: 3}
     chance: 90
     number: 1
