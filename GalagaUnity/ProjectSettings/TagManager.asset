@@ -17,11 +17,11 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Enemies
+  - Bullets
+  - PickUps
+  - Player
   - 
   - 
   - 
@@ -43,4 +43,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 285155919
+    locked: 0
+  - name: Enemies
+    uniqueID: 929631941
+    locked: 0
+  - name: Bullets
+    uniqueID: 805549797
+    locked: 0
+  - name: Player
+    uniqueID: 2863831025
+    locked: 0
+  - name: Drops
+    uniqueID: 1027880115
     locked: 0

@@ -5,9 +5,10 @@
  * */
 public class InvincibleWeaponHandler : WeaponHandler
 {
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Asteroid"))
+        if (collision.gameObject.tag.Equals(asteroidTag))
         {
             gm.ChangePoints(pointsForHitting);
 
@@ -15,7 +16,7 @@ public class InvincibleWeaponHandler : WeaponHandler
             
             AnimationManager.instance.ExplodeMeteorite(collision.gameObject);
         }
-        else if (collision.gameObject.tag.Equals("Enemy"))
+        else if (collision.gameObject.tag.Equals(enemyTag))
         {
             gm.ChangePoints(pointsForHitting);
 

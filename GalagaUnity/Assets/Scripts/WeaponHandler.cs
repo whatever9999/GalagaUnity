@@ -6,6 +6,9 @@
  * */
 public class WeaponHandler : MonoBehaviour
 {
+    public string asteroidTag = "Asteroid";
+    public string enemyTag = "Enemy";
+
     public float speed;
     public int pointsForHitting;
     public int pointsTakenForMissing;
@@ -21,7 +24,7 @@ public class WeaponHandler : MonoBehaviour
     {
         transform.Translate(0, speed * Time.deltaTime, 0);
 
-        if (transform.position.y >= 5)
+        if (transform.position.y >= ItemMovement.offscreenDistance)
         {
             Destroy(gameObject);
             //If the weapon is destroyed because it goes out of bounds then points are deducted from the player's score
@@ -31,7 +34,7 @@ public class WeaponHandler : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Asteroid"))
+        if (collision.gameObject.tag.Equals(asteroidTag))
         {
             //Add points
             gm.ChangePoints(pointsForHitting);
@@ -45,7 +48,7 @@ public class WeaponHandler : MonoBehaviour
             //Destroy this object
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag.Equals("Enemy"))
+        if (collision.gameObject.tag.Equals(enemyTag))
         {
             gm.ChangePoints(pointsForHitting);
 

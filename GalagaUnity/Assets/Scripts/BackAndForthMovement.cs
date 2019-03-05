@@ -6,6 +6,8 @@
  * */
 public class BackAndForthMovement : ItemMovement
 {
+    private const float requiredMagnitude = 0.1f;
+
     private Vector3 targetPos;
     //Whether the item is going forward or backwards
     private bool goingForth;
@@ -22,7 +24,7 @@ public class BackAndForthMovement : ItemMovement
     private void Update()
     {
         //Check to see if the position of the GameObject is the same as the target position
-        if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+        if (Vector3.Distance(transform.position, targetPos) < requiredMagnitude)
         {
             //Flip goingForth if the targetPosition has been reached
             goingForth = !goingForth;

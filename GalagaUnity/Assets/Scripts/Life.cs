@@ -7,7 +7,7 @@ public class Life : ItemMovement
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals(playerTag))
         {
             Destroy(gameObject);
             gm.GainLife();

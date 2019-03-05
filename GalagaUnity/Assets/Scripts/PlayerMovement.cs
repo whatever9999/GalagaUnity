@@ -5,14 +5,17 @@
  * */
 public class PlayerMovement : ShipMovement
 {
+    public KeyCode leftKeyCode = KeyCode.A;
+    public KeyCode rightKeyCode = KeyCode.D;
+
     void Update()
     {
         //Movement      
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(leftKeyCode))
         {
             transform.Translate(-(speed * Time.deltaTime), 0, 0);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(rightKeyCode))
         {
             transform.Translate((speed * Time.deltaTime), 0, 0);
         }

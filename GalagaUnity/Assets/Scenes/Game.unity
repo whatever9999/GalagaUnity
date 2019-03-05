@@ -258,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282840810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.3}
+  m_LocalPosition: {x: 0, y: 0, z: -6.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -276,6 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6636019662c824d8202ed88e72df50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ySpawnDistance: 8
+  rangeToSpawn: 6
   items:
   - item: {fileID: 1372054163762098, guid: 3252a904a380d6145a449232a9073de5, type: 3}
     chance: 20

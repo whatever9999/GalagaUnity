@@ -6,6 +6,8 @@ using UnityEngine;
  * */
 public class ItemSpawn : MonoBehaviour
 {
+    public int ySpawnDistance;
+    public int rangeToSpawn;
     public Item[] items;
 
     public float secondsBetweenSpawns;
@@ -55,7 +57,7 @@ public class ItemSpawn : MonoBehaviour
         //Instantiate a new prefab in a random position for each 'number'
         for (float i = 0; i < number; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(-4, 4), 7.5f + i, 0);
+            Vector3 pos = new Vector3(Random.Range(-rangeToSpawn, rangeToSpawn), i + ySpawnDistance, 0);
             GameObject.Instantiate(item).transform.SetPositionAndRotation(pos, Quaternion.Euler(0, 0, 0));
         }
     }

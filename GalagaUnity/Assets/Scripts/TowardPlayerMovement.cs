@@ -13,7 +13,7 @@ public class TowardPlayerMovement: ItemMovement {
         } catch (NullReferenceException)
         {
             //When the player dies the purple ship won't be able to find the object and will just move in a straight line instead of towards the player
-            Vector2 targetPostion = new Vector2(transform.position.x, -5);
+            Vector2 targetPostion = new Vector2(transform.position.x, -offscreenDistance);
             transform.position = Vector2.MoveTowards(transform.position, targetPostion, speed * Time.deltaTime);
         }
     }

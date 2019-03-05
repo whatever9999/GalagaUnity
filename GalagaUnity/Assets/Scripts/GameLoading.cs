@@ -5,6 +5,7 @@
  * */
 public class GameLoading : MonoBehaviour
 {
+    public const int numBackgrounds = 3;
     public GameObject background;
 
     void OnEnable()
@@ -12,9 +13,10 @@ public class GameLoading : MonoBehaviour
         Instantiate(GameManager.instance.player, GameManager.instance.startPos, Quaternion.identity);
 
         //Put the backgrounds accross three rows according to their height
-        for(int i = 0; i < 3; i++)
+        float backgroundHeight = background.GetComponent<BackgroundHandler>().backgroundHeight;
+        for (int i = 0; i < numBackgrounds; i++)
         {
-            Instantiate(background).transform.SetPositionAndRotation(new Vector3(0, BackgroundHandler.staticBackgroundHeight * i, 5), Quaternion.identity);
+            Instantiate(background).transform.SetPositionAndRotation(new Vector3(0, backgroundHeight * i, 0), Quaternion.identity);
         }
     }
 }

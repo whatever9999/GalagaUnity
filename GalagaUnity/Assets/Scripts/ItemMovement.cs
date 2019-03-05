@@ -6,7 +6,10 @@
  * */
 public class ItemMovement : ShipMovement
 {
+    [HideInInspector]
+    public const int offscreenDistance = 5;
     protected GameManager gm;
+    public string playerTag = "Player";
 
     private void Awake()
     {
@@ -16,7 +19,7 @@ public class ItemMovement : ShipMovement
     void Update()
     {
         transform.Translate(0, -speed * Time.deltaTime, 0);
-        if (transform.position.y <= -5)
+        if (transform.position.y <= -offscreenDistance)
         {
             Destroy(gameObject);
         }
@@ -24,7 +27,7 @@ public class ItemMovement : ShipMovement
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals(playerTag))
         {
             AudioManager.instance.Explosion();
             Destroy(gameObject);

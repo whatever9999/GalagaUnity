@@ -37,6 +37,6 @@ public class LeftRightMovement : ItemMovement {
             add = !add;
         }
 
-        if (transform.position.y < -5) Destroy(gameObject);
+        if (transform.position.y < -offscreenDistance) Destroy(gameObject);
     }
 }

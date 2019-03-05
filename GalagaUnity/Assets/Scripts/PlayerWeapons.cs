@@ -7,6 +7,8 @@
  * */
 public class PlayerWeapons : MonoBehaviour
 {
+    public KeyCode shootKeyCode = KeyCode.S;
+
     private static bool timerOn;
     private static float powerUpTimer;
     public float powerUpTimeLimit;
@@ -57,7 +59,7 @@ public class PlayerWeapons : MonoBehaviour
 
         shootTimer += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.S) && shootTimer >= shootTimeLimit)
+        if (Input.GetKey(shootKeyCode) && shootTimer >= shootTimeLimit)
         {
             Shoot();
             shootTimer = 0;

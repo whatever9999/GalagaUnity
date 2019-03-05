@@ -7,6 +7,8 @@ using UnityEngine.Audio;
  * */
 public class StartMenu : MonoBehaviour
 {
+    private const string audioMixerVolumeName = "volume";
+
     public AudioMixer audioMixer;
     GameManager gm;
 
@@ -27,6 +29,6 @@ public class StartMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat(audioMixerVolumeName, volume);
     }
 }
