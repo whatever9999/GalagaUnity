@@ -21,14 +21,9 @@ public class PlayerMovement : ShipMovement
         }
 
         //set the boundaries
-        if (transform.position.x >= MinMaxBounds.x)
-        {
-            transform.position = new Vector3(MinMaxBounds.x, transform.position.y, 0);
-        }
-        if (transform.position.x <= -MinMaxBounds.x)
-        {
-            transform.position = new Vector3(-MinMaxBounds.x, transform.position.y, 0);
-        }
+        Vector3 newPos = transform.position;
+        newPos.x = Mathf.Clamp(newPos.x, MinMaxBounds.x, -MinMaxBounds.x);
+        transform.position = newPos;
     }
 
 }

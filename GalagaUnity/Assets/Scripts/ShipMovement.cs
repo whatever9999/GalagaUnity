@@ -12,7 +12,6 @@ public class ShipMovement : MonoBehaviour
 
     private void Start()
     {
-        MinMaxBounds.x = Screen.width / 2;
-        MinMaxBounds.y = Screen.height / 2;
+        MinMaxBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 }
